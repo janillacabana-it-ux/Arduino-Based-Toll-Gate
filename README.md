@@ -1,103 +1,52 @@
+Arduino-Based Automatic Toll Gate System
+📌 Project Description
 
-#include <SPI.h>
-#include <MFRC522.h>
-#include <Servo.h>
-#include <Wire.h>
-#include <LiquidCrystal_I2C.h>
+This project is an Arduino-Based Automatic Toll Gate System that uses RFID technology to automatically open and close a toll gate. When an authorized RFID card is scanned, the system verifies the card and activates a servo motor to lift the gate. Unauthorized cards will not open the gate.
 
-#define SS_PIN 10
-#define RST_PIN 9
-MFRC522 rfid(SS_PIN, RST_PIN);
+The purpose of this project is to demonstrate how automation can improve traffic flow and reduce manual toll operations.
 
-Servo gateServo;
-LiquidCrystal_I2C lcd(0x27, 16, 2);
+🛠Components Used
+1. Arduino Uno
+2. RFID Module (MFRC522)
+3. RFID Card/Tag
+4. Servo Motor
+5. Ultrasonic Sensor (for future implementation)
+6. Breadboard
+7. Jumper Wires
+8. Power Supply
 
-#define buzzer 6
-#define servoPin 7
+⚙ How It Works
+- The system waits for an RFID card to be scanned.
+- When a card is detected, the system checks if the UID is authorized.
+- If authorized, the servo motor rotates to open the gate.
+- After a few seconds, the servo returns to its original position to close the gate.
+- If the card is not authorized, the gate remains closed.
 
-// Registered RFID UIDs
-byte alonaUID[] = {0x77, 0x0A, 0x32, 0x25};
-byte jukenUID[] = {0x35, 0x9C, 0x87, 0xE0};
+💻 How to Run the Project
+- Connect all components according to the circuit diagram.
+- Install required Arduino libraries
+- Open Automatic_Tollgate.ino in Arduino IDE.
+- Upload the code to the Arduino Uno.
+- Power the board and test using an RFID card.
 
-void showWelcome() {
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Welcome to SRCB");
-  lcd.setCursor(0, 1);
-  lcd.print("Please scan ID");
-}
+📷 Project Files Included
+- Automatic_Tollgate.ino – Main project code
+- Group4_Arduino_Automatic_Tollgate.pdf – Project documentation
+- Project photos
 
-boolean compareUID(byte *tagUID, byte *knownUID) {
-  for (byte i = 0; i < 4; i++) {
-    if (tagUID[i] != knownUID[i]) return false;
-  }
-  return true;
-}
+🚧 Current Status
+The RFID and servo motor system is fully implemented and tested. Minor code adjustments were made to fix small errors. The diorama model is currently under construction. An ultrasonic sensor will be added in the next phase.
 
-void setup() {
-  Serial.begin(9600);
-  SPI.begin();
-  rfid.PCD_Init();
+🔮 Future Improvements
+- Add ultrasonic sensor for vehicle detection
+- Improve diorama structure
+- Add LCD display for payment confirmation
+- Enhance system security
 
-  pinMode(buzzer, OUTPUT);
-
-  gateServo.attach(servoPin);
-  gateServo.write(0);
-
-  lcd.init();
-  lcd.backlight();
-
-  showWelcome();
-}
-
-void loop() {
-  if (!rfid.PICC_IsNewCardPresent()) return;
-  if (!rfid.PICC_ReadCardSerial()) return;
-
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Welcome!");
-
-  if (compareUID(rfid.uid.uidByte, alonaUID)) {
-    lcd.setCursor(0, 1);
-    lcd.print("Alona Abar");
-    grantAccess();
-  }
-  else if (compareUID(rfid.uid.uidByte, jukenUID)) {
-    lcd.setCursor(0, 1);
-    lcd.print("Juken Tubal");
-    grantAccess();
-  }
-  else {
-    lcd.setCursor(0, 1);
-    lcd.print("Access Denied");
-    digitalWrite(buzzer, HIGH);
-    delay(2000);
-    digitalWrite(buzzer, LOW);
-    showWelcome();
-  }
-
-  rfid.PICC_HaltA();
-}
-
-void grantAccess() {
-  delay(1000);
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Scan Successful");
-  lcd.setCursor(0, 1);
-  lcd.print("You can enter!");
-
-  digitalWrite(buzzer, HIGH);
-  gateServo.write(90);   // Open gate
-  delay(4000);
-
-  digitalWrite(buzzer, LOW);
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Gate Closing...");
-  gateServo.write(0);    // Close gate
-  delay(2000);
-
-  showWelcome();
-}
+👥 Group Members
+Kith Bryan F. Asuncion
+Jade Ann Ucab
+Alona G. Abar
+Janilla B. Cabana 
+Denmark Y. Pamisa
+Kim Edmund Valdehueza 
