@@ -7,7 +7,7 @@ The purpose of this project is to demonstrate how automation can improve traffic
 
 🛠Components Used
 1. Arduino Uno
-2. RFID Module (MFRC522)
+2. RFID Module 
 3. RFID Card/Tag
 4. Servo Motor
 5. Ultrasonic Sensor (for future implementation)
@@ -19,6 +19,7 @@ The purpose of this project is to demonstrate how automation can improve traffic
 - The system waits for an RFID card to be scanned.
 - When a card is detected, the system checks if the UID is authorized.
 - If authorized, the servo motor rotates to open the gate.
+- And, the LCD display shows
 - After a few seconds, the servo returns to its original position to close the gate.
 - If the card is not authorized, the gate remains closed.
 
@@ -33,14 +34,14 @@ The purpose of this project is to demonstrate how automation can improve traffic
 - Automatic_Tollgate.ino – Main project code
 - Group4_Arduino_Automatic_Tollgate.pdf – Project documentation
 - Project photos
+- README.md
 
 🚧 Current Status
-The RFID and servo motor system is fully implemented and tested. Minor code adjustments were made to fix small errors. The diorama model is currently under construction. An ultrasonic sensor will be added in the next phase.
+The RFID, servo motor system, and LCD display is fully implemented and tested. Minor code adjustments were made to fix small errors. The diorama model is currently under construction. An ultrasonic sensor will be added in the next phase.
 
 🔮 Future Improvements
 - Add ultrasonic sensor for vehicle detection
 - Improve diorama structure
-- Add LCD display for payment confirmation
 - Enhance system security
 
 👥 Group Members
@@ -49,4 +50,4 @@ Jade Ann Ucab
 Alona G. Abar
 Janilla B. Cabana 
 Denmark Y. Pamisa
-Kim Edmund Valdehueza 
+Kim Edmond Valdehueza 
