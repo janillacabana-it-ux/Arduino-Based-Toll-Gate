@@ -41,7 +41,7 @@ The RFID, servo motor system, and LCD display is fully implemented and tested. M
 
 🔮 Future Improvements
 - Add ultrasonic sensor for vehicle detection
-- Improve diorama structure
+- Improve diorama structure for the better output
 - Enhance system security
 
 👥 Group Members
