@@ -1,9 +1,9 @@
 Arduino-Based Automatic Toll Gate System
 📌 Project Description
 
-This project is an Arduino-Based Automatic Toll Gate System that uses RFID technology to automatically open and close a toll gate. When an authorized RFID card is scanned, the system verifies the card and activates a servo motor to lift the gate. Unauthorized cards will not open the gate.
+- This project is an Arduino-Based Automatic Toll Gate System that uses RFID technology to automatically open and close a toll gate. When an authorized RFID card is scanned, the system verifies the card and activates a servo motor to lift the gate. Unauthorized cards will not open the gate.
 
-The purpose of this project is to demonstrate how automation can improve traffic flow and reduce manual toll operations.
+- The purpose of this project is to demonstrate how automation can improve traffic flow and reduce manual toll operations.
 
 🛠Components Used
 1. Arduino Uno
@@ -50,4 +50,4 @@ Jade Ann Ucab
 Alona G. Abar
 Janilla B. Cabana 
 Denmark Y. Pamisa
-Kim Edmond Valdehueza 
+Kim Edmond T. Valdehueza 
