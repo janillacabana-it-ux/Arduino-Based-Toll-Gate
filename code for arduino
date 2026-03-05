@@ -9,7 +9,7 @@
 
 MFRC522 rfid(SS_PIN, RST_PIN);
 Servo gateServo;
-LiquidCrystal_I2C lcd(0x27, 16, 2);
+LiquidCrystal_I2C lcd(0x27,16,2);
 
 #define buzzer 6
 #define servoPin 7
@@ -53,7 +53,7 @@ void setup() {
 }
 
 void loop() {
-  // 1️⃣ Check for entry (RFID scan)
+  // 1️⃣ Entry: RFID scan
   if (rfid.PICC_IsNewCardPresent() && rfid.PICC_ReadCardSerial()) {
     lcd.clear();
     lcd.setCursor(0,0);
@@ -81,13 +81,14 @@ void loop() {
     rfid.PICC_HaltA();
   }
 
-  // 2️⃣ Check for exit (Ultrasonic)
+  // 2️⃣ Exit: Ultrasonic detects car
   long distance = readUltrasonic();
-  if (distance > 0 && distance < 30) {  // car detected within 30cm
+  if (distance > 0 && distance < 30) { // car detected within 30 cm
     lcd.clear();
     lcd.setCursor(0,0);
-    lcd.print("Car Exiting...");
-    gateServo.write(90);  // open gate
+    lcd.print("Car Exiting");
+    
+    gateServo.write(90);   // open servo for exit
     digitalWrite(buzzer, HIGH);
     delay(4000);           // keep gate open while car passes
     gateServo.write(0);    // close gate
@@ -97,7 +98,7 @@ void loop() {
   }
 }
 
-// Function to handle entry access
+// Function for car entry
 void entryAccess() {
   lcd.clear();
   lcd.setCursor(0,0);
